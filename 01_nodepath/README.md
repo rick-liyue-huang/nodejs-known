@@ -1,0 +1,1 @@
+### This folder will show some basic node techs, and also put out some application, including a chatroom by 'net' module and a music site by 'http' module, in order to explain how the node realize the server communicate with client.

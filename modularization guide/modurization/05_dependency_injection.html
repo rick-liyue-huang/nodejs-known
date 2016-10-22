@@ -1,0 +1,130 @@
+<!--The fifth solution, consider the third part dependency, the best way is to put the dependency as the arguments,
+and then use it as property.
+here we assume that the dependency is  jQuery,
+the merit of that is the dependency relation become obvious, and enhance the efficiency by decreating the scope
+searching quantity.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setting private scope by IIFE</title>
+</head>
+<body>
+
+<div>
+    <input type="text" id="x">
+    <select name="" id="opt">
+        <option value="0">+</option>
+        <option value="1">-</option>
+        <option value="2">*</option>
+        <option value="3">/</option>
+        <option value="4">%</option>
+        <option value="5">c</option>
+    </select>
+    <input type="text" id="y">
+    <input type="button" id="btn" value="=">
+    <input type="text" id="result">
+</div>
+
+<script src="../js/jquery-1.12.3.min.js"></script>
+<script>
+
+    /*   The IIFE, immediately invoked function expression, anonymous function
+     can insulate the variable from outside.
+     */
+
+    var calculate = (function () {
+
+        // the _count can not be gotton from outside without return method
+        var _count = 10;
+
+
+        function add(x, y) {
+            return parseFloat(x) + parseFloat(y);
+        }
+        function sub(x, y) {
+            return parseFloat(x) - parseFloat(y);
+        }
+        function multiply(x, y) {
+            return parseFloat(x) * parseFloat(y);
+        }
+        function divide(x, y) {
+            return parseFloat(x) / parseFloat(y);
+        }
+        return {
+            add: add,
+            sub: sub,
+            multiply: multiply,
+            divide: divide
+        };
+    })();
+
+
+    var calculate = (function (cal) {
+        cal.mod = function (x, y) {
+            return x % y;
+        };
+        return cal;
+    })(window.calculate || {});
+    /*
+     * firstly, search whether has the global function of Calculator, if it has, justing using the current one,
+     * otherwise, need to add a new one.
+     *
+     * */
+
+    var calculate = (function (cal, $) {
+        cal.changeColor = function () {
+            $('#x').css('backgroundColor', 'red');
+            $('#y').css('backgroundColor', 'green');
+        };
+        return cal;
+
+    })(window.calculate || {}, window.$);
+
+    var oX = document.getElementById("x");
+    var oY = document.getElementById("y");
+    var oOpt = document.getElementById("opt");
+    var oBtn = document.getElementById("btn");
+    var oResult = document.getElementById("result");
+
+    oBtn.addEventListener("click", function (e) {
+        var x = oX.value.trim();
+        var y = oY.value.trim();
+        var opt = oOpt.value;
+
+        var result = 0;
+
+        switch (opt) {
+            case "0":
+                result = calculate.add(x , y);
+                break;
+            case "1":
+                result = calculate.sub(x, y);
+                break;
+            case "2":
+                result = calculate.multiply(x, y);
+                break;
+            case "3":
+                result = calculate.divide(x, y);
+                break;
+            case "4":
+                result = calculate.mod(x, y);
+                break;
+            case "5":
+                result = calculate.changeColor();
+                break;
+        }
+        oResult.value = result;
+    });
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+

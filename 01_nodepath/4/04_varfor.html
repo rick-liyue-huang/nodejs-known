@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>var for loop </title>
+</head>
+<body>
+
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+
+	<script type="text/javascript">
+		
+		"use strict";
+
+		let oList = document.querySelectorAll('li');
+
+		// for (var i = 0; i < oList.length; i++) {
+		// 	oList[i].index = i;
+		// 	oList[i].addEventListener('click', function(e) {
+		// 		alert(this.index);
+		// 	});
+		// 	console.log(i);
+		// }
+
+		for (let i = 0; i < oList.length; i++) {
+			oList[i].addEventListener('click', () => {
+				alert(i);
+			});
+		}
+
+	</script>
+
+</body>
+</html>
