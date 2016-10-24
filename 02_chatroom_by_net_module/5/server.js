@@ -56,7 +56,7 @@ try {
 
 
 
-	});
+});
 
 
 // 15. capsulate a function to apply the signup
