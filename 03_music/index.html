@@ -1,0 +1,114 @@
+
+
+<!-- this is the main page of music project -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>My Music - MainPage</title>
+
+	<!-- the static source loading path should start with /  -->
+	<link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+
+<body>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<th>ID</th>
+				<th>Song Title</th>
+				<th>time</th>
+				<th>Singer</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>富士山下</td>
+					<td>04:19</td>
+					<td>陈奕迅</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/node_modules/art-template/dist/template.js"></script>
+
+	<script type="text/javascript">
+		$.ajax({
+			url: '/music',
+			type: 'get',
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
