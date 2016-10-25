@@ -10,71 +10,173 @@
 
 	<!-- the static source loading path should start with /  -->
 	<link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+
+	<style type="text/css">
+		.ply {
+			cursor: pointer;
+		}
+
+		body {
+			font-family: Miscrosoft Yahei;
+		}
+
+	</style>
 </head>
 
 
 <body>
 	<div class="container">
-		<table class="table">
-			<thead>
-				<th>ID</th>
-				<th>Song Title</th>
-				<th>time</th>
-				<th>Singer</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>富士山下</td>
-					<td>04:19</td>
-					<td>陈奕迅</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="page-header">
+			<h1><a href="/">My Music</a><small> - Main Page</small></h1>
+		</div>
+
+		<!-- a link is a 'get' request -->
+		<a href="/add" class="btn btn-success">Add Music</a>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7">
+				
+				<table class="table table-striped table-hover">
+					<thead>
+						<th>ID</th>
+						<th>Song Title</th>
+						<th>time</th>
+						<th>Singer</th>
+						<th>Control</th>
+						<th></th>
+					</thead>
+					<tbody id="list_container">
+						<!-- <tr>
+							<td>1</td>
+							<td>富士山下</td>
+							<td>04:19</td>
+							<td>陈奕迅</td>
+							<td>
+								<a href="">Edit</a>
+								<a href="">Delete</a>
+							</td>
+							<td>
+								<span data-src="" class="glyphicon glyphicon-play-circle ply"></span>
+							</td>
+						</tr> -->
+						
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-5">
+				<p>
+					Now Playing: <span id="cur_music"></span>
+				</p>
+				<audio id="audio" autoplay src="" controls="controls"></audio>
+			</div>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/node_modules/art-template/dist/template.js"></script>
 
+
+	<!-- add template -->
+	<script type="text/template" id="template">
+		
+		{{each musicList as music i}}
+			<tr>
+				<td> {{music.id}} </td>
+				<td> {{music.title}} </td>
+				<td> {{music.time}} </td>
+				<td> {{music.singer}} </td>
+				<td>
+					<a href="/edit?mid={{music.id}}">Edit</a>
+					<a href="/remove?mid={{music.id}}" class="remove">Delete</a>
+				</td>
+				<td>
+					<span data-src="{{music.src}}" class="glyphicon glyphicon-play-circle ply"></span>
+				</td>
+			</tr>
+
+
+		{{/each}}
+
+
+	</script>
+
 	<script type="text/javascript">
+
+	var $musicContainer = $('#list_container');
+
+	var $audio = $('#audio');
+
+	loadMusicList(); // init when page loads
+
+		
+	function loadMusicList() {
+
 		$.ajax({
 			url: '/music',
 			type: 'get',
+			dataType: 'json', // jquery ajax can auto do that to json object, 
 			success: function(data) {
-				console.log(data);
-			}
+			// alert(data);
+
+			// browser already transfer the binary data to
+			// string format in utf-8 coding
+			// becaue we know that we transfer the json string format
+			// we will use JSON.parse(str)
+
+
+			// jquery ajax has a property 'dataType'
+			// which can transfer the designated type
+
+			// data = JSON.parse(data); 
+
+			// console.log(data);
+
+			 var htmlStr = template('template', data);
+
+			// console.log(htmlStr);
+			 $musicContainer.html(htmlStr);
+
+			 }
+		    });
+		}
+
+		$('body').on('click', '.ply', function() {
+			// alert('msg');
+
+			// jquery has a self-defined method of data, and can transfer the name of data-name.
+			var src = $(this).data('src'); // data-src 
+			// alert(src);
+			$audio.attr('src', src);
+			// next we will get the decode the url
+
 		});
+
+		$('body').on('click', '.remove', function(e) {
+			
+			e.preventDefault();
+
+			var href = $(this).attr('href');
+			if (confirm('Really delete it?')) {
+				$.ajax({
+					url: href,
+					type: 'get',
+					dataType: 'json',
+					success: function(data) {
+						// console.log(data);
+						if (data.code === '6000') {
+							loadMusicList();
+						}
+					}
+				});
+			}
+
+		});
+
+		
+
 	</script>
 </body>
 </html>

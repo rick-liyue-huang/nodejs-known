@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Music - Main Page</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+  body {
+    font-family: Microsoft Yahei;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1><a href="/">My Music</a><small> - Add Music</small></h1>
+    </div>
+  </div>
+  <div class="container">
+  <!-- submit form
+  action：
+    when we click submit, the form will get the property of 'action', and send
+    a http request, and the request url is the value of action
+
+    method: form default in 'get' type, so we need add 'post' 
+
+  form has to have the 'name' property
+   -->
+    <form id="form" action="/add" method="post">
+      <div class="form-group">
+        <label for="">Music ID</label>
+        <input type="text" name="id" class="form-control" placeholder="please enter ID">
+      </div>
+      <div class="form-group">
+        <label for="">Music Title</label>
+        <input type="text" name="title" class="form-control" placeholder="please endter title">
+      </div>
+      <div class="form-group">
+        <label for="">Music Time</label>
+        <input type="text" name="time" class="form-control" placeholder="please enter time">
+      </div>
+      <div class="form-group">
+        <label for="">Singer</label>
+        <input type="text" name="singer" class="form-control" placeholder="please enter singer">
+      </div>
+      <div class="form-group">
+        <label for="">Music file</label>
+        <input type="file" id="file">
+        <p class="help-block">please upload music</p>
+      </div>
+      <button type="submit" class="btn btn-success">Add</button>
+    </form>
+  </div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/art-template/dist/template.js"></script>
+  <script>
+  
+  </script>
+</body>
+
+</html>
