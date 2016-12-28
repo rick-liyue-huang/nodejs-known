@@ -11,18 +11,14 @@
 
 "use strict";
 
-const http = require('http');
-
+const http = require("http");
 var count = 0;
 
 http.createServer((req, res) => {
 	count++;
-	res.writeHead(200, {
-		'Content-Type': 'text/html; charset=utf-8'
-	});
-	res.end('<h1> It is so happy, and we buy ' + count + ' iphone7 plus </h1>');
+	res.writeHead(200, {"Content-type":"text/html; charset=UTF-8"});
+	res.end('its so happy for buying ' + count +  ' iphone 7 plus');
 }).listen(3000, '127.0.0.1');
-
 // during the server open, each time we refresh the browser, the count plus one.
 
 

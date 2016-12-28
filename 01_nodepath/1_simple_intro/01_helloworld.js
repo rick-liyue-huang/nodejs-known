@@ -41,18 +41,23 @@
 
 // we start with a simple code, but it will run in terminal. The terminal will be the server.
 // the console.log is the most common use in terminal and also the most
-// important debug tool in mode.js
+// important debug tool in node.js
 
+//node -> REPL environment read-eval-print-loop
 
 "use strict";
 
 setTimeout(() => {
 
-	console.log('hello world');
+	console.log('hello world'); // after 2 second,
 }, 2000);
 
+setTimeout(() => {
+	console.log('hello everyone!');
+}, 3000);
 
 
+console.log('the first one');
 
 
 

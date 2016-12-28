@@ -2,7 +2,7 @@
 "use strict";
 
 var foo = 'baz';
-exports.foo = foo;
+// exports.foo = foo;
 
 global.foo = foo;
 
