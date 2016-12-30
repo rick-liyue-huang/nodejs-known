@@ -12,7 +12,7 @@ const fs = require('fs');
 // console.log(1);
 
 // 1. we must know that all asynchromous code cannot be got in try-catch
-
+// 异步代码无法用 try-catch捕获
 // try {
 // 	fs.writeFile('./a.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txta.txt', 'added info')
 // } catch (e) {
@@ -32,6 +32,8 @@ const fs = require('fs');
 // 	console.log('sorry');
 // }
 
+
+// 对照之前的异步代码，同步代码可以用try-catch
 // try {
 // 	JSON.parse('dhksjahduo');
 // } catch (e) {
@@ -54,25 +56,46 @@ sorry
 
  // so we will define a function to realize the asynchromous 
 
- function parseJsonStrToObj(str, callback) {
+ // function parseJsonStrToObj(str, callback) {
+ //
+ // 	process.nextTick( () => {
+ // 		try {
+ // 			let obj = JSON.parse(str);
+ // 			callback(null, obj);
+ // 		} catch (e) {
+ // 			callback(e, null);
+ // 		}
+ // 	});
+ // }
+ // //
+ // parseJsonStrToObj('{"cal": "ok"}', (err, obj) => {
+ // 	if (err) {
+ // 		console.log('sorry is wrong');
+ // 	} else {
+ // 		console.log('success', obj);
+ // 	}
+ // });
 
- 	process.nextTick( () => {
- 		try {
- 			let obj = JSON.parse(str);
- 			callback(null, obj);
- 		} catch (e) {
- 			callback(e, null);
- 		}
- 	});
- }
+function parseJsonToObj(str, callback) {
+	process.nextTick( () => {
+		try {
+			let obj = JSON.parse(str);
+			callback(null, obj);
+		} catch (e) {
+			callback(e, null);
+		}
+	});
+}
 
- parseJsonStrToObj('{"cal": "ok"}', (err, obj) => {
- 	if (err) {
- 		console.log('sorry is wrong');
- 	} else {
- 		console.log('success', obj);
- 	}
- })
+parseJsonToObj('{"cal": "ok"}', function (err, obj) {
+	if (err) {
+		console.log(',,');
+	} else {
+		console.log('success');
+	}
+});
+
+
 
 
 

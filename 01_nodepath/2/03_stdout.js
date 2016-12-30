@@ -11,8 +11,3 @@ function log (msg) {
 	process.stdout.write(msg + '\n');
 }
 
-
-// does not work well. 
-// log (msg) => {
-// 	process.stdout.write(msg + '\n');
-// }

@@ -12,13 +12,13 @@
 // 1.when the porgram exits, the process ends.
 // setTimeout(() => {
 // 	console.log('end');
-// }, 3000);
+// }, 10000);
 
 
 
 // 2. the following code is to setting the develop environment
 // var env = console.log(process.env['NODE_ENV']);
-
+//
 // if (env === 'develop') {
 // 	console.log('develop environment');
 // } else {
@@ -28,7 +28,7 @@
 // 3. 
 
 
-// console.log(process.mainModule);
+console.log(process.mainModule);
 
 /*
 Module {
@@ -49,7 +49,7 @@ Module {
      '/node_modules' ] }
 
 */
-// console.log(process.memoryUsage());
+console.log(process.memoryUsage());
 // { rss: 22880256, heapTotal: 10481664, heapUsed: 4957368 }
 
 // 4. the process sequence when includig asynchromous func
@@ -58,13 +58,11 @@ console.log(1);
 
 setTimeout(() => {
 	console.log(2);
-}, 0);
+});
 
 process.nextTick(() => {
 	console.log(3);
-	console.log('the callback is called');
 });
-
 console.log(4);
 
 // 1 4 3 2
