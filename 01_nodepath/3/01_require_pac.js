@@ -2,7 +2,7 @@
 
 "use strict";
 
-// var _ = require('underscore');
+var _ = require('underscore');
 
 
 // underscore used to deal with some methods, some browser cannot support ES5
@@ -13,14 +13,16 @@
 // });
 
 
+
 // let arr = ['a', 'b', 'c'];
 // var arr1 = _.map(arr, (s) => s += '_hello_world');
+
 // console.log(arr);  // [ 'a', 'b', 'c' ]
 // console.log(arr1);  // [ 'a_hello_world', 'b_hello_world', 'c_hello_world' ]
 
-// console.log(_.random(1000, 9999)); //6746
+console.log(_.random(1000, 9999)); //6746
 
-console.log(module.paths);
+// console.log(module.paths);
 
 /*
 
