@@ -1,5 +1,4 @@
 
-
 "use strict";
 
 // ========= synchromous code abnormal 
