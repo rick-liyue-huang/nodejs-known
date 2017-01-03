@@ -2,6 +2,8 @@
 
 "use strict";
 
+
+
 // ========= synchromous code abnormal 
 
 // function parseJsonStrToObject(str) {
@@ -22,8 +24,7 @@
 
 // 1 2 wrong 3
 
-// ========= synchromous code abnormal 
-
+// ========= synchromous code abnormal
 
 
 // =========== try catch cannot catch the wrong from asynchromous code
@@ -73,27 +74,27 @@
 
 // ============= encapsulate the asynchromous function
 
-function parseJsonStrToObj (str, callback) {
-
-	process.nextTick ( () => {
-
-		try {
-			let jsonObj = JSON.parse(str);
-			callback(null, jsonObj);
-		} catch (e) {
-			callback(e, null);
-		}
-	});
-}
+// function parseJsonStrToObj (str, callback) {
+//
+// 	process.nextTick ( () => {
+//
+// 		try {
+// 			let jsonObj = JSON.parse(str);
+// 			callback(null, jsonObj);
+// 		} catch (e) {
+// 			callback(e, null);
+// 		}
+// 	});
+// }
 
 // under the formal rule, the first arg is err object
 
-parseJsonStrToObj('{"foo": eee"bar"}', (err, obj) => {
-	if (err) {
-		return console.log('wrong');
-	}
-	console.log('data is correct ', obj);
-});
+// parseJsonStrToObj('{"foo": eee"bar"}', (err, obj) => {
+// 	if (err) {
+// 		return console.log('wrong'); // firstly execute console.log then execute return.
+// 	}
+// 	console.log('data is correct ', obj);
+// });
 
 
 

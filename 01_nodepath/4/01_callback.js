@@ -1,4 +1,6 @@
-
+/*
+* 将一个函数作为参数传递给另一个参数，并且通常在第一个函数执行完成后被调用
+* */
 
 "use strict";
 
@@ -13,10 +15,11 @@
 
 console.time('timer');
 
-for (var i = 0; i < 100000; i++) {
+for (var i = 0; i < 1000000; i++) {
 
 }
 console.timeEnd('timer'); // timer: 0.816ms
+
 
 /*
 
@@ -39,6 +42,18 @@ fs.readFile('./README.md', (err, data) => {
 	// if has not error object, we will continue the correct code.
 	// .....
 });
+
+console.time('1000ms timer');
+setTimeout( () => {
+	console.timeEnd('1000ms timer');
+	console.log('1s');
+}, 10000);
+
+console.time('3000ms timer');
+setTimeout( () => {
+	console.timeEnd('3000ms timer');
+	console.log('3s');
+}, 30000);
 
 
 

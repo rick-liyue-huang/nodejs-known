@@ -46,13 +46,13 @@ fs.readFile('./likeyou.lrc', (err, data) => {
 
 			setTimeout( () => {
 				console.log(content);
+				console.log(time);
 			}, time);
 		}
 	});
 
 
 });
-
 
 
 
