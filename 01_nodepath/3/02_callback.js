@@ -8,13 +8,16 @@
 
 */
 
-function eat (doSomeThing) {
+
+function eat(dosomething) {
 	process.nextTick( () => {
 		console.log('begin eat');
 		console.log('finish eat');
 
-		doSomeThing && doSomeThing();
+        dosomething && dosomething();
 	});
+
+
 }
 
 function callPhone() {
