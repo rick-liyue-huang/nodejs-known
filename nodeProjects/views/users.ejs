@@ -1,0 +1,24 @@
+
+    <!---- Step four ---->
+    <!--
+
+        through app.set in index.js, we set template engine as ejs and the stored directory as views, and
+        under views directory we create users.ejs template file.
+    -->
+
+
+<!doctype html>
+<html>
+<head>
+    <style type="text/css">
+        body {
+            padding: 50px;
+            font: 14px "Lucida Grande", "Helvetica", "Arial", "sans-serif"
+        }
+    </style>
+</head>
+<body>
+    <h1><%= name.toUpperCase() %></h1>
+    <p>hello, <%= name %></p>
+</body>
+</html>
