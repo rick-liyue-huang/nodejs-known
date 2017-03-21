@@ -65,6 +65,14 @@
     * */
 
 
+    /*
+    *  6. ---- normally, we split the template into many mupltplexed template parts, so we will create header.ejs,
+    *  and footer.ejs and users.ejs under views directory.
+    *
+    * */
+
+
+
 
 
 

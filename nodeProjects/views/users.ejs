@@ -6,19 +6,71 @@
         under views directory we create users.ejs template file.
     -->
 
+    <!---
+        <!doctype html>
+        <html>
+        <head>
+            <style type="text/css">
+                body {
+                    padding: 50px;
+                    font: 14px "Lucida Grande", "Helvetica", "Arial", "sans-serif"
+                }
+            </style>
+        </head>
+        <body>
+            <h1><%= name.toUpperCase() %></h1>
+            <p>hello, <%= name %></p>
+        </body>
+        </html>
 
-<!doctype html>
-<html>
-<head>
-    <style type="text/css">
-        body {
-            padding: 50px;
-            font: 14px "Lucida Grande", "Helvetica", "Arial", "sans-serif"
-        }
-    </style>
-</head>
-<body>
-    <h1><%= name.toUpperCase() %></h1>
-    <p>hello, <%= name %></p>
-</body>
-</html>
+    -->
+
+
+    <!-- ---- Step five  ------>
+    <!--
+        here we split the whole template into different templates, it has two merits:
+        firstly, the template can be used many times, which decrease the repeated codes
+        then, the template structure is clear.
+    -->
+    <%- include('header')%>
+        <h1><%= name.toUpperCase() %></h1>
+        <p>hello, <%= name %></p>
+    <%- include('footer')%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
