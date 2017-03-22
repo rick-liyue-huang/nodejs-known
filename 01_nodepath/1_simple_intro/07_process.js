@@ -13,6 +13,7 @@
 // }, 3000);
 
 
+
 // abort() method can abort the process immediately, it will abort the upon setTimeout func.
 // and also produce a core file.
 // process.abort();
@@ -28,13 +29,15 @@
 * The remaining elements will be any additional command line arguments.
 * */
 // console.log(process.argv);
-console.log(process.argv0); // node
+// console.log(process.argv0); // node
 
 /*
 [ '/Users/leo/.nvm/versions/node/v6.4.0/bin/node',
   '/Users/leo/Documents/git source/nodejs-known/nodepath/1/07_process.js' ]
 
 */
+
+ console.log(process.argv);
 
 
 

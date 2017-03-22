@@ -11,3 +11,5 @@ function log (msg) {
 	process.stdout.write(msg + '\n');
 }
 
+
+

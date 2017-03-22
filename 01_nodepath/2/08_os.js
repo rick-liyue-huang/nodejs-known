@@ -18,4 +18,5 @@ console.log(os.freemem()); // 8822734848
 
 console.log(os.hostname()); // huangliyues-MacBook-Pro.local
 
-// console.log(os.networkInterfaces()); //
+console.log(os.networkInterfaces()); //
+console.log(os.homedir());

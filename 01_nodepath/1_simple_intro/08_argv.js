@@ -3,7 +3,7 @@
 "use strict";
 
 
-console.log(process.argv);
+// console.log(process.argv);
 
 /*
 
@@ -11,7 +11,7 @@ console.log(process.argv);
   '/Users/rick/Documents/git source/nodejs-known/nodepath/1/07_process.js' ]
 
   the first arg is the node source code directory
-  the seconde is the file directory
+  the second is the file directory
 
   if we try to type node 08_argv.js 1 
   it will output 

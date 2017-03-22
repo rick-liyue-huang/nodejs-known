@@ -76,24 +76,24 @@ sorry
  // 	}
  // });
 
-function parseJsonToObj(str, callback) {
-	process.nextTick( () => {
-		try {
-			let obj = JSON.parse(str);
-			callback(null, obj);
-		} catch (e) {
-			callback(e, null);
-		}
-	});
-}
+// function parseJsonToObj(str, callback) {
+// 	process.nextTick( () => {
+// 		try {
+// 			let obj = JSON.parse(str);
+// 			callback(null, obj);
+// 		} catch (e) {
+// 			callback(e, null);
+// 		}
+// 	});
+// }
 
-parseJsonToObj('{"cal": "ok"}', function (err, obj) {
-	if (err) {
-		console.log(',,');
-	} else {
-		console.log('success');
-	}
-});
+// parseJsonToObj('{"cal": "ok"}', function (err, obj) {
+// 	if (err) {
+// 		console.log(',,');
+// 	} else {
+// 		console.log('success');
+// 	}
+// });
 
 
 
