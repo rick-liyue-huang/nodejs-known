@@ -1,16 +1,14 @@
 
 
 "use strict";
-
 const fs = require('fs');
 
 fs.readFile('./README.md', (err, data) => {
-	if (err) {
-		throw err;
-	}
+	if (err) throw err;
+	console.log(data);
+	data = data.toString();
 	console.log(data);
 });
-
 /*
 
  node defaultly read the file in binary code format
@@ -22,3 +20,4 @@ fs.readFile('./README.md', (err, data) => {
   ae b0 0d 0a 0d 0a 2a 2a 2a 0d 0a 0d 0a 23 23 
   20 31 2e 20 e5 a4 ... >
 */
+
