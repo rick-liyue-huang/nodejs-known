@@ -12,6 +12,9 @@ Buffer 是一个像 Array 的对象，主要用于操作二进制数据（字节
 ### 1.1 Buffer（二进制数据） 和字符串（字符）之间的的转换
 
 在node最新的6.0版本（该版本对es6支持的程度达到了 93%）中，原生支持的字符编码如下：
+
+
+
 - ascii
 - utf8
 - utf16le
@@ -20,6 +23,7 @@ Buffer 是一个像 Array 的对象，主要用于操作二进制数据（字节
 - binary
 - hex
 - [官方文档链接](https://nodejs.org/dist/latest-v6.x/docs/api/buffer.html#buffer_buffers_and_character_encodings)
+
 
 #### 1.1.1 Buffer转字符串
 

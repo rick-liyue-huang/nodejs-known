@@ -95,7 +95,25 @@
 // 	console.log('data is correct ', obj);
 // });
 
+    function parseJsonStrToObj(str, callback) {
 
+        process.nextTick(() => {
+            try {
+                let jsonObj = JSON.parse(str);
+                callback(null, jsonObj);
+            } catch (e) {
+                callback(e, null);
+            }
+        })
+    }
+
+    parseJsonStrToObj('{"foo"dd: "bar"}', (err, obj) => {
+        if (err) {
+            console.log('wrong');
+            return;
+        }
+        console.log('data is correct, ', obj);
+    });
 
 
 
