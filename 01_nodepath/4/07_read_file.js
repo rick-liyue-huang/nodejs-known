@@ -10,3 +10,4 @@ fs.readFile('./life.ipeg', (err, data) => {
 	}
 	console.log(data);
 });
+

@@ -5,34 +5,24 @@
 const fs = require('fs');
 const iconv = require('iconv-lite');
 
+ fs.readFile('./a.txt', (err, data) => {
+ 	if (err) throw  err;
 
-fs.writeFile('./c.txt', iconv.encode('大家好', 'utf8'), (err) => {
-	if (err) {
-		throw err;
-	}
+	 let oddBuf = data.slice(0,82);
+	 let newBuf = data.slice(83);
 
-	console.log('success');
-});
+	 let str = iconv.decode(data, 'utf8');
+	 console.log(str);
+	 console.log('===========');
+	 console.log(iconv.decode(newBuf, 'utf8'));
+ });
 
-// it will get a new file named c.txt, and the content is encode by gbk.
+ fs.appendFile('./a.txt', '\n海上生明月，天涯共此时', 'utf8', (err) => {
+ 	if (err) throw err;
+	 console.log('success');
+ });
 
-// fs.readFile('./c.txt', 'utf8', (err, data) => {
-// 	if (err) {
-// 		throw err;
-// 	}
-// 	// console.log(data.toString())
-
-// 	let newString = iconv.decode(data, 'utf8');
-// 	console.log(newString);
-// });
-
-
-fs.appendFile('./c.txt', '\n 大家再见', 'utf8', (err) => {
-	if (err) {
-		throw err;
-	}
-	console.log('success');
-});
-
-// it will append the data "大家再见" in the c.txt.
-
+ fs.appendFile('./a.txt', '\n床前明月光，疑是地上霜', 'utf8', (err) => {
+ 	if (err) throw err;
+	 console.log('success too');
+ });

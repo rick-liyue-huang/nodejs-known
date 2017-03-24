@@ -10,14 +10,15 @@
 
 */
 
-const but = new Buffer(10);
+const buf = new Buffer(10); //
 
-// butter is a look like array, and can assign the value by the index
+// buffer is a look like array, and can assign the value by the index
 
-console.log(but); // <Buffer 48 4b 0f 01 01 00 00 00 70 81>
+console.log(buf); // <Buffer 48 4b 0f 01 01 00 00 00 70 81>
 
-but[0] = 0;
-but[1] = 1;
+buf[0] = 0;
+buf[1] = 1;
+buf[3] = 12;
 
-console.log(but);  // <Buffer 00 01 80 02 01 00 00 00 10 00> the first two elements is changed to 000 and 01
+console.log(buf);  // <Buffer 00 01 80 02 01 00 00 00 10 00> the first two elements is changed to 000 and 01
 
