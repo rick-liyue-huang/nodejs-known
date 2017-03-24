@@ -4,18 +4,63 @@
 const fs = require('fs');
 const path = require('path');
 
-let sourcePath = '/Users/leo/Downloads/HBuilder.app';
-let distPath = '/Users/leo/Documents/HBuilder.app';
+/*
+// this is a small file , its ok
+let sourcePath = path.join(__dirname, 'README.md');
+let distPath = '/Users/rickhuang/desktop/README.md';
 
-// copy: firstly read and then write
 fs.readFile(sourcePath, (err, data) => {
-	if (err) {
-		throw err;
-	}
+
+	if (err) throw err;
 	fs.writeFile(distPath, data, (err) => {
-		if (err) {
-			throw err;
-		}
+		if (err) throw err;
 		console.log('success');
 	});
 });
+*/
+// we will use the large file
+let sourcePath = path.join('/users/rickhuang/downloads/angular2', 'ng2screencast-v2.mp4');
+let distPath = '/users/rickhuang/desktop/ng2screencast-v2.mp4';
+
+fs.readFile(sourcePath, (err, data) => {
+	if (err) throw err;
+	fs.writeFile(distPath, data, (err) => {
+		if (err) throw err;
+		console.log('successful');
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

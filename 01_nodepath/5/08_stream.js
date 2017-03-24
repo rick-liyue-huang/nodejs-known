@@ -1,57 +1,37 @@
 
-
 "use strict";
 
 const fs = require('fs');
 const path = require('path');
 
-"use strict";
+let sourcePath = path.join('/users/rickhuang/downloads/angular2', 'ng2screencast-v2.mp4');
+let distPath = '/users/rickhuang/desktop/ng2screencast-v2.mp4';
 
-const fs = require('fs');
-const path = require('path');
+let totalSize = fs.statSync(sourcePath).size; // the total siz of source file
 
-let sourcePath = '/Users/leo/Downloads/HBuilder.app';
-let distPath = '/Users/leo/Documents/HBuilder.app';
-
-// get the total size
-let totalSize = fs.statSync(sourcePath).size;
-
-// create a read stream
+//create read stream
 let readStream = fs.createReadStream(sourcePath);
 
-// create a write stream
+//create write stream
 let writeStream = fs.createWriteStream(distPath);
 
 let curSize = 0;
 
-/*
-	the readstream will read the data from sourcepath, and the trigger
-	the data method in readStream function
-	and then transfer the data to the callback's first argument
-	chunk is the similar as buffer
-*/
 
+// readstream continuely read data
 readStream.on('data', (chunk) => {
 
+	// get progress bar
 	curSize += chunk.length;
 	let percentage = curSize / totalSize * 100;
-	console.log(`already copy ${percentage}`);
-
-	// and then write data by writestream
+	console.log(`already copy: ${percentage} %`);
 	writeStream.write(chunk);
 });
 
+// when finish the write file, it will close
 readStream.on('end', () => {
 	writeStream.close();
 });
-
-
-
-
-
-
-
-
 
 
 

@@ -19,7 +19,7 @@ fs.readFile('../../README.md', (err, data) => {
     // console.log(html);
 
 //    将 HTML 字符串保存在一个文件中
-    fs.writeFile('../README.html', html, (err, data) => {
+    fs.writeFile('./README.html', html, (err, data) => {
         if (err) {
             throw err;
         }
