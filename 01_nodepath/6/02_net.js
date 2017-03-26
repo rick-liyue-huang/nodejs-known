@@ -1,40 +1,29 @@
-
-
 "use strict";
 
+const net = require('net'); // net module provides you with an asynchronous network warapper
 
-// this is a core module for net app
-const net = require('net');
+// create a server instance
+const server = net.createServer((client) => {
+	console.log('some client is comming in');
+});
 
-// 1. we create a 'Server' server, and get the 'server' instance.
-const server = net.createServer();
+// when get wrong , will trigger error event
+server.on('error', (err) => {
+	console.log(`server is wrong: ${err}`);
+});
 
-/*
-	what we created server used to deal with the client connecting,
-	but we cannot inspect when the client will connect with the server,
-	so we will deal with client 'connect' request through  watching server's 'connection' event,
-	in one word, this is based on the event driven. 
-*/ 
 
-// 2. watching server's 'connection' event. as the client connect with the server, the server will trigger the 'connection' event
-
+// connection used to listen server's connection event, to deal with connection request.
 server.on('connection', (socket) => {
-	console.log('some client is connecting...');
+	console.log('some client is coming ');
 });
 
-// 3. open the server 'listen' event, in fact, just let the server run, and also need a listen port.
-
+//let server listen the port, and listening, by the port
 server.listen(8124, () => {
-	console.log('server is running....');
+	console.log('server is running');
 });
 
-
-/*
-	when we type 'nodemon 02_net.js', the terminal will show 'server is running...', which means to open a server.
-	and then we open a another terminal ,and type 'telnet 127.0.0.1 8124', the 'server' terminal will show 
-	'some client is connecting...', which means to info the server that a client is connecting with this server.
-*/
-
+//use telnet 127.0.0.1 8124 to simulate the client comes
 
 
 
