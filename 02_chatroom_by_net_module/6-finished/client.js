@@ -17,7 +17,7 @@ client.on('connect', () => {
 	// 5. when client firstly connecting with the server, it shows to input the nickname
 	process.stdout.write('please enter the nickname: ');
 
-	// 6. the client will enter the name, 
+	// 6. the client will enter the name,
 	// notice important: the data used to send to the server and in binary format.
 	process.stdin.on('data', (data) => { // notice: the data is in binary format
 
@@ -34,23 +34,23 @@ client.on('connect', () => {
 
 			return client.write(JSON.stringify(send)); // 9. the new client name will send to server's users object.
 			/*
-				notice import: the send is the 'data' the server will receive, 
-				and in object format, we need to firstly transfer to string format, 
-				the JSON format is the classical format, and can be do in data protocol format,
-				but remember to transfer to string firstly, and the string will be transfer to binary
-				in socket of client.
-			*/   
+			 notice import: the send is the 'data' the server will receive,
+			 and in object format, we need to firstly transfer to string format,
+			 the JSON format is the classical format, and can be do in data protocol format,
+			 but remember to transfer to string firstly, and the string will be transfer to binary
+			 in socket of client.
+			 */
 		}
 
 		// 10. getting here means that the client can send the message to others through server.
 
 		/*
 
-			20. until now, we already deal with the signup protocol, 
-		        the code run under following path:
-		        firstly, enter a name, and then define whether it is successful,
-		        if ok, you can input the anyting you want to send, otehrwise, it will tell you send a new name. 
-		*/ 
+		 20. until now, we already deal with the signup protocol,
+		 the code run under following path:
+		 firstly, enter a name, and then define whether it is successful,
+		 if ok, you can input the anyting you want to send, otehrwise, it will tell you send a new name.
+		 */
 
 		// 21. we also need to define whether the client send the message to one person or all persons
 		// here we define a format:  if in 'username: blabla', it is in 'P2P' saying to username only.
@@ -96,51 +96,51 @@ client.on('data', (data) => {
 
 		// just remember the protocol format
 		// { protocol:'signup',code:'1001',message:'nickname already exists' }
-       // { protocol:'signup',code:'1000',message:'ok' }
+		// { protocol:'signup',code:'1000',message:'ok' }
 
-       let signal = JSON.parse(data);
-       let protocol = signal.protocol;
-
-
-       // 19. through the 'protocol' to define the different branches.
-       if (protocol === 'signup') {
-
-       		switch (signal.code) {
-       			case '1000':
-
-       			// notice important: when signup successful, add the signal.nickname to nickname,
-       			// thus, we can continue the step 10.!!!!
-       				nickname = signal.nickname;
-       				console.log('signup successful');
-       				break;
-   				case '1001':
-   					console.log('username exists already');
-   					break;
-       		}
+		let signal = JSON.parse(data);
+		let protocol = signal.protocol;
 
 
-       } else if (protocol === 'broadcast') {
+		// 19. through the 'protocol' to define the different branches.
+		if (protocol === 'signup') {
 
-       	/*
+			switch (signal.code) {
+				case '1000':
 
-			let send = {
-			protocol: 'broadcast',
-			nickname: signal.from,
-			message: message
-		};
-       	*/
-
-
-       	// 25. the client will receive the data and show in client terminal.
-       	console.log(`${signal.nickname} say: ${signal.message}`);
-
-
-       } else if (protocol === 'p2p') {
+					// notice important: when signup successful, add the signal.nickname to nickname,
+					// thus, we can continue the step 10.!!!!
+					nickname = signal.nickname;
+					console.log('signup successful');
+					break;
+				case '1001':
+					console.log('username exists already');
+					break;
+			}
 
 
-       	// 28. will deal with the data from server when in p2p protocol
+		} else if (protocol === 'broadcast') {
 
-       	let code = signal.code;
+			/*
+
+			 let send = {
+			 protocol: 'broadcast',
+			 nickname: signal.from,
+			 message: message
+			 };
+			 */
+
+
+			// 25. the client will receive the data and show in client terminal.
+			console.log(`${signal.nickname} say: ${signal.message}`);
+
+
+		} else if (protocol === 'p2p') {
+
+
+			// 28. will deal with the data from server when in p2p protocol
+
+			let code = signal.code;
 
 			if (!code) {
 				console.log(`${signal.from} say to me: ${signal.message}`);
@@ -148,7 +148,7 @@ client.on('data', (data) => {
 
 				console.log('username does not exist');
 			}
-       }
+		}
 
 
 	} catch(e) {

@@ -13,4 +13,5 @@
 6. normally, clients communicate with each other by 'broadcast' type, which means that any one can receive the message;
 7. if input in 'username:message', it will only send the identified username, and no others receive it.
 
-notice, this is just a basic 'chatroom' app based on terminals by the node.js 'net' module. In this app, we define some data protocol, and by these protocols, client and server communicate. Next, we will learn the 'http' module, and realize a 'music' browser based app. 
+notice, this is just a basic 'chatroom' app based on terminals by the node.js 'net' module. In this app, we define some data protocol, and by these protocols, client and server communicate.
+Next, we will learn the 'http' module, and realize a 'music' browser based app.

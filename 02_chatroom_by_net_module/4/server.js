@@ -49,7 +49,7 @@ server.on('connection', (socket) => {
 		// if the user is exist, will info the user
 		if (users[signal.nickname]) {
 	  // { protocol:'signup',code:'1001',message:'nickname already exists' }
-      // { protocol:'signup',code:'1002',message:'nickname  valid' }
+      // { protocol:'signup',code:'1002',message:'nickname  invalid' }
       // { protocol:'signup',code:'1000',message:'ok' }
 
       	let send = {
