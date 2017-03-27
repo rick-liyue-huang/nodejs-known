@@ -35,6 +35,6 @@ server.on('connection', (socket) => {
 	});
 });
 
-server.listen(port, '192.168.0.8', () => {
+server.listen(port, '127.0.0.1', () => {
 	console.log(`running server at port ${port}`);
 });

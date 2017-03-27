@@ -6,7 +6,7 @@ const net = require('net');
 
 // this client is actually the same as the 'socket' in server, and it will 
 // be assigned to connect with the port 3000 of server.
-const client = net.connect({port: 3000, host: '192.168.0.8'});
+const client = net.connect({port: 3000, host: '127.0.0.1'});
 
 
 // when client connect with server socket successfully, it will trigger the callback func 
