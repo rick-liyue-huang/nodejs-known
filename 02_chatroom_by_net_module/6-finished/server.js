@@ -143,7 +143,7 @@ server.on('connection', (socket) => {
 				protocol: 'p2p',
 				code: 2002,
 				message: 'nickname not exist'
-			}
+			};
 			return socket.write(JSON.stringify(send));
 		}
 
