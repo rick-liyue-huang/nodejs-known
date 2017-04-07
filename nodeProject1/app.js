@@ -1,4 +1,6 @@
 
+
+/*
 	const server = require(`./server.js`);
 	const router = require(`./router.js`);
 
@@ -12,3 +14,37 @@
 	handle[`/upload`] = requestHandlers.upload;
 
 	server.start(router.route, handle);
+
+
+	*/
+
+	const server = require(`./server.js`);
+	const router = require(`./router.js`);
+
+	server.start(router.route);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

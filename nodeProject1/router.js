@@ -1,4 +1,4 @@
-
+/*
 	function route(handle, pathname) {
 		console.log(`About to route a request for ${pathname}`);
 
@@ -11,3 +11,45 @@
 	}
 
 	module.exports.route = route;
+
+	*/
+
+
+
+	function route(pathname) {
+		console.log(`About ${pathname} is called`);
+	}
+
+	module.exports.route = route;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
