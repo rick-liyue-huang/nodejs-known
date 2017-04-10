@@ -50,36 +50,7 @@
 
 
 
-	"use strict";
-
-	const http = require(`http`);
-	const url = require(`url`);
-
-	function start(route) {
-
-		let server = http.createServer();
-		let port = 3000;
-
-		server.on(`request`, (req, res) => {
-
-
-
-			let pathname = url.parse(req.url).pathname;
-			console.log(`request for ${pathname} is triggerred`);
-
-			route(pathname);
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(`Hello Rick`);
-			res.end();
-		});
-
-		server.listen(port, () => {
-			console.log(`server is listening the port of ${port}`);
-		});
-	}
-
-	module.exports.start = start;
+	
 	
 
 
