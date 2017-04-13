@@ -2,6 +2,19 @@
 
 ## A full blown web application with Node.js
 
+• We want to serve web pages, therefore we need an HTTP server
+• Our server will need to answer differently to requests, depending on which URL the request
+was asking for, thus we need some kind of router in order to map requests to request handlers
+• To fullfill the requests that arrived at the server and have been routed using the router, we
+need actual request handlers
+• The router probably should also treat any incoming POST data and give it to the request
+handlers in a convenient form, thus we need request data handling
+• We not only want to handle requests for URLs, we also want to display content when these
+URLs are requested, which means we need some kind of view logic the request handlers can
+use in order to send content to the user’s browser
+• Last but not least, the user will be able to upload images, so we are going to need some kind
+of upload handling which takes care of the details
+
 ### 1. It contains some uses:
 1.1 The user should be able to use our application with a web browser;
 1.2 The user should see a welcome page when requesting http://localhost:8888/start which displays a file upload form;
@@ -36,6 +49,31 @@ querystring.parse(string)["hello"]: world
 ###5. Create a new file named router.js 
 
 and we will wire together this router with our server before puting more logic into the router.
+
+Here the url module provides methods which allows us to extract the different parts of a URL likes the requested path and query string, and querystring can in turn be used to parse the query string for request parameters.
+
+                              url.parse(string).query
+                                         |
+             url.parse(string).pathname  |
+                         |               |
+                         |               |
+                     ------ -------------------
+http://localhost:8888/start?foo=bar&hello=world
+                                ---       -----
+                                 |          |
+                                 |          |
+           querystring.parse(string)["foo"] |
+                                            |
+                             querystring.parse(string)["hello"]
+
+
+###5. Routing to real request handlers
+
+Let’s call these functions, where requests are routed to, request handlers. And let’s tackle those next, because unless we have these in place there isn’t much sense in doing anything with the router for now.
+
+
+###6. Put the expensive operation in the child_process
+
 
 
 

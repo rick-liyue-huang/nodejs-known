@@ -1,80 +1,76 @@
-/*
+
 	"use strict";
 
-	// let's start with the server module
-
-	// it will require the http module that ships with Node.js and makes it accessible through the variable http
 	const http = require(`http`);
 	const url = require(`url`);
 
+//  call one of the functions the http module offers: createServer, this function returns an object
+//  and thsi object has a method named listen, and takes a numeirc value which indicates the port
+//  number our HTTP server is going to listen on.
 
-	// encap a function "start"
-	function start(route, handle) {
+//  we will then add url module
+	
+	// we will loosely couple server and router by injecting this dependency;
+	function start (route, handle) {
 
-		// call one functions the http module offers: createServer, and it will return an object
+		function onRequest(req, res) { // 'req' and 'res' are both objects
 
-		// two parameters, req and res are two objects, which have their methods to handle the details of the HTTP
-		// request that occured and to respond to the request.
-		http.createServer((req, res) => {
+			console.log(`some clients are coming....`);
 
-			// by the imported "url" module, we can confirm the url pathname.
-			// this allows us to map requests to our request handlers based on the URL path using our router.
+			console.log(`req.url: ${req.url}`); // req.url: /start?user=rick&pass=1234
 			let pathname = url.parse(req.url).pathname;
-			console.log("Request for " + pathname + " received");
+			console.log(`url pathname: ${pathname}`); // url pathname: /start
+			console.log(`url query: ${url.parse(req.url).query}`); // url query: user=rick&pass=1234
 
-			//  inject route function as parameter of start function
-			route(handle, pathname);
+			// let content = route(handle, pathname); // About to route a request for /start
 
-			// whenever a request is received, it uses the response.writeHead() function to send an HTTP status
-			//  200 and content-type in the HTTP response header.
-			res.writeHead(200, {"Content-Type": "text/plain"});
+			// res.writeHead(200, {"Content-Type": "text/html"});
+			// res.write(content);
+			// res.end();
 
-			let content = route(handle, pathname);
+			route(handle, pathname, res);
+		}
 
-			// and the response.write() function to send the text "hello world" in the HTTP response body.
-			res.write(content);
-			res.end();
-
-			// this object has a method 'listen' and takes anumeric value which indicates the port number 
-			// our HTTP server is going to listen on.
-		}).listen(3000);
-
-		console.log(`server has started`);
+		http.createServer(onRequest).listen(3000, () => {
+			console.log(`the server is listening the port 3000`);
+		});
 	}
 
+	exports.start = start;
 
-	module.exports.start = start;
 
 
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
