@@ -31,6 +31,21 @@ res.clearCookiew(名字)
 
 
 
+session: 
+
+cookie-session
+
+server.use(cookieParser())
+server.use(cookieSession({
+    keys: []
+}));
+
+delete req.session 
+
+写入 
+
+读取
+
 
 
 

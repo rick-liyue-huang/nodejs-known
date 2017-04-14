@@ -74,6 +74,10 @@ Let’s call these functions, where requests are routed to, request handlers. An
 
 ###6. Put the expensive operation in the child_process
 
+###7. import the node-formidable for upload 
+
+
+
 
 
 

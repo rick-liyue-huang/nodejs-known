@@ -22,13 +22,25 @@
 			console.log(`url pathname: ${pathname}`); // url pathname: /start
 			console.log(`url query: ${url.parse(req.url).query}`); // url query: user=rick&pass=1234
 
+			
+
 			// let content = route(handle, pathname); // About to route a request for /start
 
 			// res.writeHead(200, {"Content-Type": "text/html"});
 			// res.write(content);
 			// res.end();
 
-			route(handle, pathname, res);
+			// let postData = ``;
+			// req.on(`data`, (data) => {
+			// 	postData += data;
+			// 	console.log(`received post data chunk: ${postData}`);
+			// });
+
+			// req.on(`end`, () => {
+			// 	route(handle, pathname, res, postData);
+			// })
+			route(handle, pathname, res, req/*, postData*/);
+			
 		}
 
 		http.createServer(onRequest).listen(3000, () => {
