@@ -149,8 +149,8 @@
 				<td>{{ $value.time }}</td>
 				<td>{{ $value.singer }}</td>
 				<td>
-					<a href="">Edit</a>
-					<a href="">Delete</a>
+					<a href="/edit?mid={{$value.id}}">Edit</a>
+					<a href="/remove?mid={{$value.id}}">Delete</a>
 				</td>
 				<td>
 					<span data-src="{{$value.src}}" class="glyphicon glyphicon-play-circle ply"></span>
