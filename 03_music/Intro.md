@@ -9,6 +9,7 @@ We need to analyze the project of 'My Music'
 - Main Page
 	+ show the music list
 	+ can play music
+    + lyric play
 
 - Add Music Page
 	+ user can add music info 
@@ -37,6 +38,8 @@ GET   /remove?mid-xx deal with the request of removing music
 ajax rote
 
 GET   /music   bring the muic info in the musicList response to the client in json string format
+
+GET /music 把数组中的歌曲信息以json格式字符串的形式相应给客户端。
 
 
 
