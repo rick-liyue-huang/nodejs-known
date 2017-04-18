@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>a</title>
+</head>
+<body>
+	username: <input type="text" id="user"><br>
+	password: <input type="password" id="pass"><br>
+	<input type="button" value="login" id="btn1">
+
+	<script src="./ajax.js"></script>
+	<script type="text/javascript">
+		let oUser = document.getElementById(`user`);
+		let oPass = document.getElementById(`pass`);
+		let oBtn1 = document.getElementById(`btn1`);
+
+		oBtn1.onclick = function() {
+			ajax({
+				url: `/login`, 
+				data: {user: oUser.value, pass: oPass.value}, 
+				success: function (str) {
+					let json = eval('('+str+')');
+					if (json.ok) {
+						alert('succesful login');
+					} else {
+						alert('wrong: '+ json.msg);
+					}
+				}, 
+				error: function() {
+					alert('coom faile');
+				}
+			});
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
