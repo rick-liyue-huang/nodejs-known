@@ -23,6 +23,7 @@
 		<div class="page-headr">
 			<h1><a href="/">My Music</a><small> - MainPage</small></h1>
 		</div>
+		<!-- a 链接就是 get 请求 -->
 		<a href="/add" class="btn btn-success">Add Music</a>
 	</div>
 
@@ -136,28 +137,27 @@
 
 	<script src="./node_modules/jquery/dist/jquery.js"></script>
 	<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="./node_modules/art-template/dist/template-native.js"></script>
+	<script src="./node_modules/art-template/lib/template-web.js"></script>
 
 
 	<script type="text/template" id="template">
 
-		<% musicList.forEach(function(music) { %>
-
+		{{ each musicList }}
 			<tr>
-			<td><%= music.id%></td>
-			<td><%= music.title%></td>
-			<td><%= music.time%></td>
-			<td><%= music.singer%></td>
-			<td>
-				<a href="">Edit</a>
-				<a href="">Delete</a>
-			</td>
-			<td>
-				<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-			</td>
-		</tr>
+				<td>{{ $value.id }}</td>
+				<td>{{ $value.title }}</td>
+				<td>{{ $value.time }}</td>
+				<td>{{ $value.singer }}</td>
+				<td>
+					<a href="">Edit</a>
+					<a href="">Delete</a>
+				</td>
+				<td>
+					<span data-src="{{$value.src}}" class="glyphicon glyphicon-play-circle ply"></span>
+				</td>
+			</tr>
 
-		<% }) %>
+		{{/each}}
 
 		
 		
@@ -165,6 +165,7 @@
 	<script>
 
 		let $musicContainer = $(`#list_container`);
+		let $audio = $(`#audio`);
 
 		$.ajax({
 			url: `/music`,
@@ -184,11 +185,24 @@
 				console.log(htmlStr);
 
 				$musicContainer.append(htmlStr);
+
+				
+		
 			},
 			error: function() {
 				alert(`wrong comm data`);
 			}
 		});
+		
+		// 通过冒泡事件来处理 
+		$(`body`).on(`click`, `.ply`, function() {
+			// alert(`msg`);
+			let src = $(this).data('src'); // jquery 中 有一个 data-src 是自定义属性
+			// alert(src);
+
+			$audio.attr(`src`, src); 
+		});
+		
 	</script>
 	
 </body>

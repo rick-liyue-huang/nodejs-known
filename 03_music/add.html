@@ -1,64 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>My Music - Main Page</title>
-  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-  <style>
-  body {
-    font-family: Microsoft Yahei;
-  }
-  </style>
-</head>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>My Music - Add Music</title>
+		<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+		<style>
+			body {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+			}
+		</style>
+	</head>
+	<body>
 
-<body>
-  <div class="container">
-    <div class="page-header">
-      <h1><a href="/">My Music</a><small> - Add Music</small></h1>
-    </div>
-  </div>
-  <div class="container">
-  <!-- submit form
-  action：
-    when we click submit, the form will get the property of 'action', and send
-    a http request, and the request url is the value of action
+		<div class="container">
+			<div class="page-header">
+				<h1><a href="/">My Music</a><small> - Add Music</small></h1>
+			</div>
+		</div>
 
-    method: form default in 'get' type, so we need add 'post' 
+		<div class="container">
 
-  form has to have the 'name' property
-   -->
-    <form id="form" action="/add" method="post">
-      <div class="form-group">
-        <label for="">Music ID</label>
-        <input type="text" name="id" class="form-control" placeholder="please enter ID">
-      </div>
-      <div class="form-group">
-        <label for="">Music Title</label>
-        <input type="text" name="title" class="form-control" placeholder="please endter title">
-      </div>
-      <div class="form-group">
-        <label for="">Music Time</label>
-        <input type="text" name="time" class="form-control" placeholder="please enter time">
-      </div>
-      <div class="form-group">
-        <label for="">Singer</label>
-        <input type="text" name="singer" class="form-control" placeholder="please enter singer">
-      </div>
-      <div class="form-group">
-        <label for="">Music file</label>
-        <input type="file" id="file">
-        <p class="help-block">please upload music</p>
-      </div>
-      <button type="submit" class="btn btn-success">Add</button>
-    </form>
-  </div>
-  <script src="/node_modules/jquery/dist/jquery.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="/node_modules/art-template/dist/template.js"></script>
-  <script>
-  
-  </script>
-</body>
+			<!-- 表单提交：
+				action: 当你点击submit的时候，表单会自动找到action属性， 得到里面的值，然后发起一个http请求，
+				那么请求的url就是action 属性 里面指定的值
 
-</html>
+				method： 
+				表单默认不指定method情况下，method就是get请求， 如果想让表单发起一个post请求，需要添加
+				method=`post`.
+
+				表单提交：
+				表单中的表单元素一定要有name 属性才能提交
+			 -->
+
+			<form action="/add" id="form" method="post">
+				<div class="form-group">
+					<label for="">Music No.</label>
+					<input type="text" name="id" class="form-control" placeholder="pls enter music no.">
+				</div>
+				<div class="form-group">
+					<label for="">Music Title</label>
+					<input type="text" name="title" class="form-control" placeholder="pls enter music title">
+				</div>
+				<div class="form-group">
+					<label for="">Music Time</label>
+					<input type="text" name="time" class="form-control" placeholder="pls enter music time">
+				</div>
+				<div class="form-group">
+					<label for="">Music Singer</label>
+					<input type="text" name="singer" class="form-control" placeholder="pls enter music singer">
+				</div>
+				<div class="form-group">
+					<label for="">Music file</label>
+					<input type="file" id="file">
+					<p class="help-block">pls upload the music file</p>
+				</div>
+				<button type="submit" class="btn btn-success">Click to Add</button>
+			</form>
+		</div>
+
+		<script src="./node_modules/jquery/dist/jquery.js"></script>
+		<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="./node_modules/art-template/lib/template-web.js"></script>
+		<script>
+			// $(`#form`).on(`submit`, function(e) {
+			// 	e.preventDefault();
+			// 	console.log($(`#file`).prop(`files`)[0].size);
+			// });
+		</script>
+	</body>
+	</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
