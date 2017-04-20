@@ -4,6 +4,16 @@
 	<title>a</title>
 </head>
 <body>
+
+	<!-- <form action="/login">
+		username: <input type="text" name="user">
+		password: <input type="password" name="pass">
+		<input type="submit" value="login">
+	</form>
+
+	<script>
+		let user
+	</script> -->
 	username: <input type="text" id="user"><br>
 	password: <input type="password" id="pass"><br>
 	<input type="button" value="login" id="btn1">
@@ -16,21 +26,27 @@
 
 		oBtn1.onclick = function() {
 			ajax({
-				url: `/login`, 
-				data: {user: oUser.value, pass: oPass.value}, 
-				success: function (str) {
-					let json = eval('('+str+')');
-					if (json.ok) {
-						alert('succesful login');
+				url: `/login`,
+
+				// data : will send to the server
+				data: {user: oUser.value, pass: oPass.value},
+
+				// str : the data from server to page
+				success: function(str) {
+					let json = eval(`(${str})`);
+					if(json.ok) {
+						alert(`login successful`);
 					} else {
-						alert('wrong: '+ json.msg);
+						alert(`wrong: ${json.msg}`);
 					}
-				}, 
+				},
 				error: function() {
-					alert('coom faile');
+					alert(`comm wrong`);
 				}
 			});
 		}
+
+		
 	</script>
 </body>
 </html>
