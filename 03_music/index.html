@@ -1,221 +1,137 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>My Music - MainPage</title>
-	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
-	<style>
-		.ply {
-			cursor:  pointer;
-		}
-
-		body {
-			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-		}
-	</style>
-</head>
-
-
-<body>
-	
-	<div class="container">
-		<div class="page-headr">
-			<h1><a href="/">My Music</a><small> - MainPage</small></h1>
-		</div>
-		<!-- a 链接就是 get 请求 -->
-		<a href="/add" class="btn btn-success">Add Music</a>
-	</div>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-7">
-				<table class="table table-striped table-hover">
-					<thead>
-						<th>No.</th>
-						<th>Title</th>
-						<th>Time</th>
-						<th>Singer</th>
-						<th>Operate</th>
-						<th></th>
-					</thead>
-					<tbody id="list_container">
-
-
-						<!-- <tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>01</td>
-							<td>04:19</td>
-							<td>Ethon</td>
-							<td>
-								<a href="">Edit</a>
-								<a href="">Delete</a>
-							</td>
-							<td>
-								<span data=src="" class="glyphicon glyphicon-play-circle ply"></span>
-							</td>
-						</tr> -->
-
-
-					</tbody>
-				</table>
-			</div>
-
-			<div class="col-md-5">
-				<p>
-					Currently playing : <span id="cur_music"></span>
-				</p>
-				<audio id="audio" autoplay src="" controls="controls"></audio>
-			</div>
-		</div>
-	</div>
-
-	<script src="./node_modules/jquery/dist/jquery.js"></script>
-	<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="./node_modules/art-template/lib/template-web.js"></script>
-
-
-	<script type="text/template" id="template">
-
-		{{ each musicList }}
-			<tr>
-				<td>{{ $value.id }}</td>
-				<td>{{ $value.title }}</td>
-				<td>{{ $value.time }}</td>
-				<td>{{ $value.singer }}</td>
-				<td>
-<<<<<<< HEAD
-					<a href="">Edit</a>
-					<a href="">Delete</a>
-=======
-					<a href="/edit?mid={{$value.id}}">Edit</a>
-					<a href="/remove?mid={{$value.id}}">Delete</a>
->>>>>>> ce7442a98a81a4be8fe0f6ed2a6f8f71588cb877
-				</td>
-				<td>
-					<span data-src="{{$value.src}}" class="glyphicon glyphicon-play-circle ply"></span>
-				</td>
-			</tr>
-
-		{{/each}}
-
-		
-		
-	</script>
-	<script>
-
-		let $musicContainer = $(`#list_container`);
-		let $audio = $(`#audio`);
-
-		$.ajax({
-			url: `/music`,
-			type: `get`,
-			dataType: `json`,  // jquery 可以自动将字符串转换为json对象，如果服务器不符合json则报错
-			success: function(data) {
-				// alert(data);
-
-				// 浏览器已经将后台服务器传递给我们的二进制数据解析称为字符串了
-				// 因为我们自己知道，我们传递的是json格式的字符串，所以我们可以使用JSON.parse(str)
-
-				// jquery ajax有一个属性， 可以通过指定dataType自动将服务器返回的数据转换为你指定的类型， 所以可以省略下面
-				// data = JSON.parse(data);
-				console.log(data);
-
-				let htmlStr = template(`template`, data);
-				console.log(htmlStr);
-
-				$musicContainer.append(htmlStr);
-
-				
-		
-			},
-			error: function() {
-				alert(`wrong comm data`);
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>My Music</title>
+		<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+		<style>
+			.ply {
+				cursor: pointer
 			}
-		});
+			body {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+			}
+		</style>
+	</head>
+	<body>	
+		<div class="container">
+			<div class="page-header">
+				<h1><a href="/">My Music</a><small> - Homepage</small></h1>
+			</div>
+			<!-- a link will send `get` request -->
+			<a href="/add" class="btn btn-success">Add Music</a>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<table class="table table-striped table-hover">
+						<thead>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Time</th>
+							<th>Singer</th>
+							<th>Operate</th>
+							<th></th>
+						</thead>
+						<tbody id="musicList_container">
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-5">
+					<p>Currently playing <span id="cur_play"></span></p>
+					<audio src="" autoplay id="audio" controls="controls"></audio>
+				</div>
+			</div>
+		</div>
 		
-		// 通过冒泡事件来处理 
-		$(`body`).on(`click`, `.ply`, function() {
-			// alert(`msg`);
-			let src = $(this).data('src'); // jquery 中 有一个 data-src 是自定义属性
-			// alert(src);
 
-			$audio.attr(`src`, src); 
-		});
+		<script src="./node_modules/jquery/dist/jquery.min.js"></script>	
+		<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>	
+		<script src="./node_modules/art-template/dist/template.js"></script>	
+
+		<script id="template" type="text/template">
+			
+			{{ each musicList }}
+				<tr>
+					<td>{{ $value.id }}</td>
+					<td>{{ $value.title }}</td>
+					<td>{{ $value.time }}</td>
+					<td>{{ $value.singer }}</td>
+					<td>
+						<a href="/edit?mid={{ $value.id }}">Edit</a>
+						<a class="remove" href="/remove?mid={{ $value.id }}">Delete</a>
+					</td>
+					<td>
+						<span data-src="{{ $value.src }}" class="glyphicon glyphicon-play-circle ply"></span>
+					</td>
+				</tr>
+			{{ /each }}
+		</script>
 		
-	</script>
-	
-</body>
-</html>
+		<script>
 
+			let $musicContainer = $(`#musicList_container`);
+			let $audio = $(`#audio`);
 
+			// encapsulate a function for ajax transmission
+			function loadMusicList () {
 
+				$.ajax({
+					url: `/music`,
+					type: `get`,
+					/*
+						if we use dataType: `json`, jquery will auto transfer the string type to json type
+					*/
+					dataType: `json`,
+					success: function(data) {
+						// data = JSON.parse(data);
+						console.log(data);
 
+						// template load
+						let htmlStr = template(`template`, data);
+						$musicContainer.html(htmlStr);
+					}
+				});
+			}
+
+			loadMusicList();
+
+			$(`body`).on(`click`, `.ply`, function() {
+				let src = $(this).data(`src`); // data-src: self-define attribute
+				$audio.attr(`src`, src);
+			});
+
+				// click here to remove the music
+			$(`body`).on(`click`, `.remove`, function(e) {
+				e.preventDefault();
+				let href = $(this).attr(`href`);
+
+				if (confirm(`confirm remove it?`)) {
+					$.ajax({
+						url: href,
+						type: `get`,
+						dataType: `json`,
+						success: function(data) {
+							console.log(data);
+
+							if (data.code === `6000`) {
+								// alert(`${data.msg}`);
+
+								// load the page
+								loadMusicList();
+							}
+						}
+					});
+				}
+			});
+
+		</script>
+
+	</body>
+	</html>
 
 
 
