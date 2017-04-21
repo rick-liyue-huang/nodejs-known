@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ejs</title>
+</head>
+<body>
+  <!-- <div>
+    <%= json.arr[0].user %>
+  </div> -->
+
+  <!-- <% for (let i = 0; i < json.arr.length; i++) { %>
+    <div>username: <%= json.arr[i].user %></div>
+  <% }%> -->
+
+  <!-- <%
+    let str = '<div></div>';
+  %>
+  <%- str %> -->
+
+
+  <!-- <% for (let i = 0; i < 4; i++) { %>
+    <% include ./a.txt %>
+  <% } %> -->
+  
+  <% if (type === 'admin') { %>
+  <% include ../style/admin.css %>
+  <%  } else{ %>
+  <% include ../style/user.css %>
+  <% } %>
+  
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
