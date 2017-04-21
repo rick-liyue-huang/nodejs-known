@@ -1,443 +1,297 @@
-
-	"use strict";
-
-	const musicList = [
-		{
-			id: `1`,
-			title: `富士山下`,
-			time: `04:19`,
-			singer: `Ethon`,
-			src: `./files/04.mp3`
-		},
-		{
-			id: `2`,
-			title: `大哥`,
-			time: `03:57`,
-			singer: `卫兰`,
-			src: `./files/08.mp3`
-		},
-		{
-			id: `3`,
-			title: `血染的风采`,
-			time: `03:35`,
-			singer: `黄耀明`,
-			src: `./files/06.mp3`
-		},
-		{
-			id: `4`,
-			title: `相思`,
-			time: `03:01`,
-			singer: `毛阿敏`,
-			src: `./files/02.mp3`
-		},
-		{
-			id: `5`,
-			title: `梦里水乡`,
-			time: `04:54`,
-			singer: `江珊`,
-			src: `./files/01.mp3`
-		},
-		{
-			id: `6`,
-			title: `石头记`,
-			time: `04:39`,
-			singer: `达明一派`,
-			src: `./files/03.mp3`
-		},
-	];
-
-
+	
+	//import some built-in module, including `http` `fs` `path` `querystring` `url`
 	const http = require(`http`);
 	const fs = require(`fs`);
 	const path = require(`path`);
-	const querystring = require(`querystring`); 
-<<<<<<< HEAD
-	const config = require(`./config.js`);
-	const mime = require(`./mime.json`);
-=======
 	const url = require(`url`);
-	const config = require(`./config.js`);
+	const querystring = require(`querystring`);
+
+	// put some configuration or some pre-defined data in the export file, here we import them
 	const mime = require(`./mime.json`);
+	const config = require(`./config.js`);
+
+	// art-template is a template engine, it can also used in node.js
 	const artTemplate = require(`art-template`);
->>>>>>> ce7442a98a81a4be8fe0f6ed2a6f8f71588cb877
+
+//  it provides some configuration; in order to distinguish it from front-end (.html), we config the engine tag
+	artTemplate.config(`openTag`, `<<`);
+	artTemplate.config(`closeTag`, `>>`);
+
+	// arttempalte can cache the template string, so we cancel cache.
+	artTemplate.config(`cache`, false);
 
 
-	// create http server
+// here we simulate some data, put it in the back-end server
+	const musicList = [{
+		  id: '1',
+		  title: '富士山下',
+		  time: '04:19',
+		  singer: '陈奕迅',
+		  src: '/files/陈奕迅 - 富士山下.mp3'
+		}, {
+		  id: '2',
+		  title: '大哥',
+		  time: '03:57',
+		  singer: '卫兰',
+		  src: './files/卫兰 - 大哥.mp3'
+		}, {
+		  id: '3',
+		  title: '血染的风采',
+		  time: '03:35',
+		  singer: '黄耀明',
+		  src: '/files/黄耀明 - 血染的风采.mp3'
+		}, {
+		  id: '4',
+		  title: '相思',
+		  time: '03:02',
+		  singer: ' 毛阿敏',
+		  src: '/files/毛阿敏 - 相思.mp3'
+		}, {
+		  id: '5',
+		  title: '梦里水乡',
+		  time: '04:53',
+		  singer: ' 江珊',
+		  src: '/files/江珊 - 梦里水乡.mp3'
+		}, {
+		  id: '6',
+		  title: '石头记',
+		  time: '04:38',
+		  singer: ' 达明一派',
+		  src: '/files/达明一派 - 石头记.mp3'
+		}];
+
+
 	let server = http.createServer();
 
-//  listen request event
 	server.on(`request`, (req, res) => {
 
-		res.render = render(res);
-
-		res.json = responseJson(res);
-
-<<<<<<< HEAD
-		// res.end(`hello world`);
-
-		// get the req path
-		let url = decodeURI(req.url);
-=======
-		res.redirect = redirect(res);
-
-		// res.end(`hello world`);
-
-		// get the req path
+		// let 'url.parse(req.url).query' become json object
 		let urlObj = url.parse(req.url, true);
 
-		// 为了后面的代码方便操作，我们约定好，把所有的查询字符串转换为 对象之间
-		// 挂载到 request对象上的query属性上
+		let pathname = decodeURI(urlObj.pathname);
 		req.query = urlObj.query;
-
-		let pathname = urlObj.pathname;
->>>>>>> ce7442a98a81a4be8fe0f6ed2a6f8f71588cb877
 		let method = req.method;
 
-	 /* static source
+		// sel-define function 
+		res.render = render(res);
+		res.json = responseJson(res);
+		res.redirect = redirect(res);
 
-	 /node_modules/jquery/dist/jquery.js
-	 /node_modules/bootstrap/dist/js/bootstrap.js
-	 /node_modules/art-template/dist/template.js
-	 /node_modules/bootstrap/dist/css/bootstrap.css
+		console.log(pathname);
+		// /node_modules/bootstrap/dist/css/bootstrap.css
+		// /node_modules/jquery/dist/jquery.js
+  		// /node_modules/bootstrap/dist/js/bootstrap.js
+	    // /node_modules/art-template/dist/template.js
 
-		*/ 
 
-<<<<<<< HEAD
-		if (method === `GET` && url === `/`) {
-=======
+	    // based on the different pathname, we do some different response
 		if (method === `GET` && pathname === `/`) {
->>>>>>> ce7442a98a81a4be8fe0f6ed2a6f8f71588cb877
-			/*
-			fs.readFile(path.join(__dirname, `index.html`), (err, data) => {
-				if (err) {
-					return res.end(err.message);
-				}
-
-				res.writeHead(200, {"Content-Type": "text/html; charset=uf-8"});
-				res.end(data);
-			});
-			*/
 
 			res.render(`index`);
 
-<<<<<<< HEAD
-		} else if (method === `GET` && url.startsWith(`/node_modules/`)) {
-
-			// get the current static source absolute path
-			let fullPath = path.join(__dirname, url);
-			console.log(fullPath);
-
-			fs.readFile(fullPath, (err, data) => {
-				if (err) {
-					return res.end(err.message);
-				}
-				res.writeHead(200, {"Content-Type": mime[path.extname(fullPath)] ||
-													`text/plain`});
-				res.end(data);
-			});
-
-
-		} else if (method === `GET` && url === `/music`) {
-
-			//  先构造要相应给客户端的json对象
-			let send = {
-				musicList: musicList
-			};
-//  因为无法通过网络传递json对象，所有我们把json对象转化为json格式的字符串
-			let sendStr = JSON.stringify(send);
-
-			// 因为网络中传递的都是二进制，因此我们需要转化为二进制
-			let sendBuf = new Buffer(sendStr);
-
-			res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-
-			// 将二进制数据传递给我们的客户端
-			res.end(sendBuf); // res.end()内部可以自动将字符串转换为二进制
-
-
-		} else if (method === `GET` && url.startsWith(`/files/`)) {
-
-
-			// 对于下面的写法来说，mp3文件很大，这种做法是一次性的读取出来，然后相应到客户端
-			// 因此我们用 流的方式，来提高性能。
-			// fs.readFile(path.join(__dirname, `files/01.mp3`), (err, data) => {
-			// 	if (err) {
-			// 		return res.end(err,message);
-			// 	}
-			// 	res.end(data);
-			// });
-
-			let fullPath = path.join(__dirname, url);
-
-			// 手动的方式创建一个读取流
-			let readStream = fs.createReadStream(fullPath);
-			// // 使用node.js原生的方法pipe
-			// 我们通过调用读取流的pipe
-			readStream.pipe(res);
-
-		} else if (method === `GET` && url === `/add`) {
-
-           /*
-			fs.readFile(path.join(__dirname, `add.html`), (err, data) => {
-				if(err) {
-					return res.end(err.message);
-				}
-				res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-				res.end(data);
-			});
-			*/
-			res.render(`add`);
-
-		} else if (method === `POST` && url === `/add`) {
-
-			let data = ``;
-			// 接受post方式提交的数据
-			req.on(`data`, (chunk) => {
-				data += chunk;
-			});
-			req.on(`end`, () => {
-				// res.end(data);
-
-				let obj = querystring.parse(data);
-				// res.json(obj);
-
-				// 判断该编号是唯一的
-				let mid = obj.id;
-
-				// es6 method find will return the object match the condition
-				let music = musicList.find((m) => {
-					return m.id === mid;
-				});
-				// 如果music已经存在，告诉用户该歌曲存在
-				if (music) {
-					return res.json({
-						code: `5001`,
-						msg: `music id exist already`
-					});
-				} 
-
-				// 代码到这里表示可以添加歌曲
-				musicList.push(obj);
-				res.json({
-					code: `5000`,
-					msg: `successfully add music`
-				});
-			});
-		}
-	});
-
-
-//  当调用了render方法之后，render方法就返回一个新的函数，这是高阶函数-- 函数内部返回新的函数
-	function render(res) {
-
-		return function(filename) {
-
-			fs.readFile(path.join(__dirname, `${filename}.html`), (err, data) => {
-				if (err) {
-					return res.end(err.message);
-				}
-				res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-				res.end(data);
-			});
-		};
-		
-	}
-
-	function responseJson(res) {
-
-		return function (jsonObj) {
-			let jsonStr = JSON.stringify(jsonObj);
-			res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-			res.end(jsonStr);
-		};
-	}
-
-=======
+			// loading the static files
 		} else if (method === `GET` && pathname.startsWith(`/node_modules/`)) {
 
-			// get the current static source absolute path
 			let fullPath = path.join(__dirname, pathname);
-			console.log(fullPath);
-
 			fs.readFile(fullPath, (err, data) => {
 				if (err) {
 					return res.end(err.message);
 				}
-				res.writeHead(200, {"Content-Type": mime[path.extname(fullPath)] ||
-													`text/plain`});
+
+				// deal with the coding 
+				res.writeHead(200, {"Content-Type": mime[path.extname(fullPath)] || 
+													`text/plain` });
 				res.end(data);
 			});
-
 
 		} else if (method === `GET` && pathname === `/music`) {
 
-			//  先构造要相应给客户端的json对象
+			// musicList is array type, so we need encap it to json type
 			let send = {
-				musicList: musicList
+				musicList
 			};
-//  因为无法通过网络传递json对象，所有我们把json对象转化为json格式的字符串
+
+			// only stransfer the string type in network
 			let sendStr = JSON.stringify(send);
 
-			// 因为网络中传递的都是二进制，因此我们需要转化为二进制
-			let sendBuf = new Buffer(sendStr);
+			// let sendBuf = Buffer.from(sendStr); // network auto transfer string to buffer
 
-			res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-
-			// 将二进制数据传递给我们的客户端
-			res.end(sendBuf); // res.end()内部可以自动将字符串转换为二进制
-
+			res.writeHead(200, {"Content-Type": `text/plain; charset=utf-8`}); // used to decode the messy code
+			res.end(sendStr);
 
 		} else if (method === `GET` && pathname.startsWith(`/files/`)) {
 
-
-			// 对于下面的写法来说，mp3文件很大，这种做法是一次性的读取出来，然后相应到客户端
-			// 因此我们用 流的方式，来提高性能。
-			// fs.readFile(path.join(__dirname, `files/01.mp3`), (err, data) => {
-			// 	if (err) {
-			// 		return res.end(err,message);
-			// 	}
-			// 	res.end(data);
-			// });
-
 			let fullPath = path.join(__dirname, pathname);
 
-			// 手动的方式创建一个读取流
+			//  this a huge file, so we use stream pipe method
 			let readStream = fs.createReadStream(fullPath);
-			// // 使用node.js原生的方法pipe
-			// 我们通过调用读取流的pipe
 			readStream.pipe(res);
 
 		} else if (method === `GET` && pathname === `/add`) {
 
-           /*
-			fs.readFile(path.join(__dirname, `add.html`), (err, data) => {
-				if(err) {
-					return res.end(err.message);
-				}
-				res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
-				res.end(data);
-			});
-			*/
 			res.render(`add`);
 
 		} else if (method === `POST` && pathname === `/add`) {
 
 			let data = ``;
-			// 接受post方式提交的数据
+
+
+			// in POST method, it will use req.on('data') and req.on('end') to transfer data to backend.
 			req.on(`data`, (chunk) => {
 				data += chunk;
 			});
+
 			req.on(`end`, () => {
-				// res.end(data);
 
+				// res.end(data); // id=e&title=e&time=fsds&singer=aas
 				let obj = querystring.parse(data);
-				// res.json(obj);
+				console.log(obj);
 
-				// 判断该编号是唯一的
 				let mid = obj.id;
 
-				// es6 method find will return the object match the condition
-				let music = musicList.find((m) => {
-					return m.id === mid;
-				});
-				// 如果music已经存在，告诉用户该歌曲存在
+				let music = musicList.find(m => m.id === mid);
+
+				// means that the music id already exist, so return err message.
 				if (music) {
 					return res.json({
 						code: `5001`,
-						msg: `music id exist already`
+						msg: `the music id exists already`
 					});
-				} 
+				}
 
-				// 代码到这里表示可以添加歌曲
+				// push new music in the array
 				musicList.push(obj);
-				
+				// console.log(musicList);
 
-				// 重新定向网页地址
+
+				// redirect to the mainpage
 				res.redirect(`http://127.0.0.1:3000/`);
-
-				res.json({
-					code: `5000`,
-					msg: `successfully add music`
-				});
 			});
 
 		} else if (method === `GET` && pathname === `/edit`) {
 
-			// 从查询字符串中获取用户要编辑的歌曲信息 id
-		    let mid = req.query.mid;
+				let mid = req.query.mid;
 
-		    // 根据歌曲id，找到数据中的该项
-		    let music = musicList.find(m => m.id === mid);
+				let music = musicList.find( m => m.id === mid);
 
-		    if (!music) {
-		      return res.json({
-		        code:'5003',
-		        msg:'music not found'
-		      });
-		    }
+				// if the music not found
+				if (!music) {
+					return res.json({
+						code: `5002`,
+						msg: `the music not found`
+					});
+				}
+				// console.log(mid);
+				res.render(`edit`, {
+					music
+				});
 
-		    // 在 es6 中，可以
-		    res.render('edit',{
-		      music: music
-		    });
+		} else if (method === `POST` && pathname === `/edit`) {
 
+			let mid = req.query.mid;
+
+			let index = musicList.findIndex(m => m.id === mid);
+
+			
+			if (index === -1) {
+				return res.json({
+					code: `5002`,
+					msg: `music not found`
+				});
+			}
+
+			let data = ``;
+
+			req.on(`data`, (chunk) => {
+				data += chunk;
+			});
+
+			req.on(`end`, () => {
+
+				data = querystring.parse(data);
+				data.id = mid; // add .id property
+
+				musicList[index] = data;
+				res.redirect(`http://127.0.0.1:3000/`);
+			});
+
+		} else if (method === `GET` && pathname === `/remove`) {
+
+			let mid = req.query.mid;
+
+			let index = musicList.findIndex(m => m.id === mid);
+
+			if (index === -1) {
+				return res.json({
+					code: `5002`,
+					msg: `the music not found`
+				});
+			}
+
+			musicList.splice(index, 1);
+			// res.redirect(`http://127.0.0.1:3000/`);// synchronously refresh
+
+			// here we send the code info to front, in order to refresh page ansynchronously;
+			res.json({
+				code: `6000`,
+				msg: `remove successful`
+			});
 		}
+
 	});
 
+	server.listen(config.port, () => {
+		console.log(`this server is listening the port ${config.port} on host ${config.host}`);
+	});
 
-//  当调用了render方法之后，render方法就返回一个新的函数，这是高阶函数-- 函数内部返回新的函数
 /*
 	function render(res) {
-
 		return function(filename) {
 
 			fs.readFile(path.join(__dirname, `${filename}.html`), (err, data) => {
 				if (err) {
 					return res.end(err.message);
 				}
-				res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+				// console.log(path.join(__dirname, `index.html`)); // /Users/rickhuang/Desktop/kk/index.html
+				res.writeHead(200, {"Content-Type": `text/html; charset=utf-8`});
 				res.end(data);
 			});
 		};
-		
 	}
 	*/
 
+
+	// self-defined func
 	function render(res) {
-	  return function(fileName, data) {
-	    // 对于有的页面不需要注入数据，所以我们写了一个短路的 data || {}
-	    // 目的是为了出现 undefined
-	    let htmlStr = artTemplate(`${__dirname}/${fileName}`, data || {});
-	    res.writeHead(200, {
-	      'Content-Type': 'text/html; charset=utf-8'
-	    });
-	    res.end(htmlStr);
-	  };
+		return function (filename, data) {
+
+			let htmlStr = artTemplate(`${__dirname}/${filename}`, data || {});
+			res.writeHead(200, {"Content-Type": `text/html; charset=utf-8`});
+			res.end(htmlStr);
+		};
 	}
 
 	function responseJson(res) {
 
 		return function (jsonObj) {
 			let jsonStr = JSON.stringify(jsonObj);
-			res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+			res.writeHead(200, {"Content-Type": `text/plain; charset=utf-8`});
 			res.end(jsonStr);
 		};
 	}
 
 	function redirect(res) {
-		return function(path) {
-			res.writeHead(302, {
-				"Location": path
-			});
+		return function(location) {
+			res.writeHead(302, {"Location": location});
 			res.end();
 		};
 	}
 
->>>>>>> ce7442a98a81a4be8fe0f6ed2a6f8f71588cb877
-//  open listen
-	server.listen(config.port, config.host, () => {
-		console.log(`server is listening port ${config.port}`);
-	});
+
+
+
+
+
 
 
 

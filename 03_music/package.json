@@ -2,7 +2,7 @@
   "name": "03_music",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "art-template": "4.0.0",
     "bootstrap": "3.3.7",
     "jquery": "3.2.1"
   }
