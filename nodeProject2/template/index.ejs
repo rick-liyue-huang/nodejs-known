@@ -36,14 +36,29 @@
 <body>
 <div class="nav">
 	<ul>
-    	<li class="active"><a href="javascript:;">首页</a></li>
-    	<li><a href="javascript:;">关注</a></li>
-    	<li><a href="javascript:;">栏目</a></li>
+    	<li class="active"><a href="javascript:;">HomePage</a></li>
+    	<li><a href="javascript:;">Focus</a></li>
+    	<li><a href="javascript:;">Column</a></li>
     </ul>
 </div>
 <div class="content">
 	<div class="banner">
+
         <ul class="clearfix">
+
+            <% for(var i = 0; i < banners.length; i++) { %>
+
+            <li>
+                <img src="<%= banners[i].src %>" alt=""/>
+                <div class="text-box">
+                    <h2><%= banners[i].title%></h2>
+                    <p><%= banners[i].sub_title %></p>
+                </div>
+            </li>
+
+        <% } %>
+
+        <!--
             <li><img src="images/img_1.jpg" alt=""/>
             	<div class="text-box">
                 	<h2>还可以降低首付款健身房11111</h2>
@@ -62,6 +77,8 @@
                     <p>刘德华33 / 文</p>
                 </div>
             </li>
+
+    -->       
         </ul>
         <ol>
             <li class="active"></li>
@@ -71,6 +88,18 @@
     </div>
     <div class="newsList">
     	<ul>
+            <% for(let i = 0; i < articles.length; i++) { %> 
+
+                <li>
+                <a href="/article?id=<%= articles[i].ID %>">
+                    <h2><%= articles[i].title %></h2>
+                    <p><%= articles[i].summary %></p>
+                </a>
+            </li>
+
+            <% } %>
+
+      <!--      
             <li>
             	<a href="conText.html">
                     <h2>还可以降低首付款健身房还可以降低首付款健身房还可以降低首付款健身房333</h2>
@@ -113,12 +142,8 @@
                     <p>还可以降低首付款健还可以降低首付款健身房还可以降低首付款健身房身房还可以降低首付款健还可以降低首付款健身房身房</p>
                 </a>
             </li>
-            <li>
-            	<a href="conText.html">
-                    <h2>还可以降低首付款健身房还可以降低首付款健身房还可以降低首付款健身房333</h2>
-                    <p>还可以降低首付款健还可以降低首付款健身房还可以降低首付款健身房身房还可以降低首付款健还可以降低首付款健身房身房</p>
-                </a>
-            </li>
+
+    -->
         </ul>
     </div>
 </div>

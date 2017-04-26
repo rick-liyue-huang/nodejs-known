@@ -1,5 +1,7 @@
 
-数据字典 --- 数据定出来
+This is just the simple project --- 
+here it shows how to use 'express' and 'mysql', 'ejs' to complete a blog project.
+and know about how to render the page in back-end and how to create a server to provide the data to front-end.
 
 
 1.banner  (banner_table)
@@ -24,3 +26,31 @@
     username   varchar(32) 
     password   varchar(32)
     src   头像地址  varchar(64)
+
+
+
+    UPDATE article_table SET n_like=n_like+1 WHERE ID=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
