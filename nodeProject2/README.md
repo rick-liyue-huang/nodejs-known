@@ -3,6 +3,8 @@ This is just the simple project ---
 here it shows how to use 'express' and 'mysql', 'ejs' to complete a blog project.
 and know about how to render the page in back-end and how to create a server to provide the data to front-end.
 
+In this project, I just show how to render the 'index.ejs' and 'banner.ejs', and through rendering them, I know how to get data from database and inject in the page.
+
 
 1.banner  (banner_table)
     ID 
